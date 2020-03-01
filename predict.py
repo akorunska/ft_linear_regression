@@ -1,11 +1,8 @@
 import sys
-from utils import eprint
-
-def estimate_price(mileage, theta0, theta1):
-    return float(theta0 + (theta1 * mileage));
+from utils import eprint, estimate_price
 
 def read_thetas():
-    return (0.0, 0.0)
+    return (1.0252834318371036, -0.6209591389626389)
 
 def receive_mileage_input():
     try:
