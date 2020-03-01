@@ -27,7 +27,6 @@ def dataset_to_vectors(dataset):
         price.append(d.price)
     return km, price
 
-
 def read_dataset():
     dataset = []
     with open(dataset_filename, newline='') as csvfile:

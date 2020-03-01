@@ -6,7 +6,6 @@ def theta0_cumulate(theta0, theta1, km, price, m):
         theta0_sum += (estimate_price(km[i], theta0, theta1) - float(price[i]))
     return float(theta0_sum)
 
-
 def theta1_cumulate(theta0, theta1, km, price, m):
     theta1_sum = 0
     for i in range(m):
@@ -23,10 +22,9 @@ def update_theta1(theta0, theta1, km, price, m):
 
 def gradient_decsent_algorithm(km, price):
     theta0 = 0
-    theta1 = 1
+    theta1 = 0
     m = len(km)
     exit_criteria_prev = 0 
-    print("", theta0_cumulate(theta0, theta1, km, price, m))
     while(exit_criteria_prev != theta0_cumulate(theta0, theta1, km, price, m)):
         theta0_updated = update_theta0(theta0, theta1, km, price, m)
         theta1_updated = update_theta1(theta0, theta1, km, price, m)
@@ -40,14 +38,14 @@ def normalize_vector(vect):
     result = [x / max_value for x in vect]
     return result
 
+def restore_after_normalisation(theta0, theta1, km, price):
+    return theta0 * max(price), theta1 * max(price) / max(km)
+
 if __name__=="__main__":
     dataset = read_dataset()
-    for d in dataset:
-        print(d)
     km, price = dataset_to_vectors(dataset)
     km_normalized = normalize_vector(km)
     price_normalized = normalize_vector(price)
-    print(km_normalized)
-    print(price_normalized)
     theta0, theta1 = gradient_decsent_algorithm(km_normalized, price_normalized)
-    # print(theta0, theta1)
+    theta0, theta1 = restore_after_normalisation(theta0, theta1, km, price)
+    print(theta0, theta1)
