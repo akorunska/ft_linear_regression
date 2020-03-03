@@ -1,8 +1,5 @@
 import sys
-from utils import eprint, estimate_price
-
-def read_thetas():
-    return (1.0252834318371036, -0.6209591389626389)
+from utils import eprint, estimate_price, read_thetas_from_file
 
 def receive_mileage_input():
     try:
@@ -16,6 +13,6 @@ def receive_mileage_input():
 
 if __name__=="__main__":
     mileage = receive_mileage_input()
-    theta0, theta1 = read_thetas()
+    theta0, theta1 = read_thetas_from_file()
     print("using theta0=%i, theta1=%i" % (theta0, theta1))
     print("estimated price is %i" % estimate_price(mileage, theta0, theta1))
