@@ -24,7 +24,7 @@ def read_thetas_from_file():
     try:
         with open(thetas_storage_filename) as json_file:
             data = json.load(json_file)
-        return data['theta0'], data['theta1']
+        return float(data['theta0']), float(data['theta1'])
     except:
         eprint("Error when reading ", thetas_storage_filename)
 
