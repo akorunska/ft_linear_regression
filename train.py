@@ -25,11 +25,14 @@ def gradient_decsent_algorithm(km, price):
     theta0 = 0
     theta1 = 0
     m = len(km)
-    exit_criteria_prev = 0 
-    while(exit_criteria_prev != theta0_cumulate(theta0, theta1, km, price, m)):
+    exit_criteria_prev_theta0 = 0 
+    exit_criteria_prev_theta1 = 0 
+    while (exit_criteria_prev_theta0 != theta0_cumulate(theta0, theta1, km, price, m) and 
+        exit_criteria_prev_theta1 != theta1_cumulate(theta0, theta1, km, price, m)):
         theta0_updated = update_theta0(theta0, theta1, km, price, m)
         theta1_updated = update_theta1(theta0, theta1, km, price, m)
-        exit_criteria_prev = theta0_cumulate(theta0, theta1, km, price, m)
+        exit_criteria_prev_theta0 = theta0_cumulate(theta0, theta1, km, price, m)
+        exit_criteria_prev_theta1 = theta1_cumulate(theta0, theta1, km, price, m)
         theta0 = theta0_updated
         theta1 = theta1_updated
     return theta0, theta1
