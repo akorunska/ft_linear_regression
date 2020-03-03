@@ -22,19 +22,29 @@ class DataItem:
 def dataset_to_vectors(dataset):
     km = []
     price = []
-    for d in dataset:
-        km.append(d.km)
-        price.append(d.price)
+    try:
+        for d in dataset:
+            km.append(d.km)
+            price.append(d.price)
+    except:
+        eprint("Dadataset with uncorrect formatting")
     return km, price
 
 def read_dataset():
     dataset = []
-    with open(dataset_filename, newline='') as csvfile:
-        reader = csv.DictReader(csvfile)
-        for d in reader:
-            dataset.append(DataItem(d))
+    try:
+        with open(dataset_filename, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for d in reader:
+                try:
+                    dataset.append(DataItem(d))
+                except:
+                    eprint("Dadataset with uncorrect formatting")
+    except:
+        eprint("Error when reading dataset")
     return dataset
 
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
     sys.exit(1)
+
