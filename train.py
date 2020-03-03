@@ -1,4 +1,4 @@
-from utils import eprint, read_dataset, dataset_to_vectors, learning_rate, estimate_price
+from utils import eprint, read_dataset, dataset_to_vectors, learning_rate, estimate_price, write_thetas_to_file
 
 def theta0_cumulate(theta0, theta1, km, price, m):
     theta0_sum = 0
@@ -48,4 +48,4 @@ if __name__=="__main__":
     price_normalized = normalize_vector(price)
     theta0, theta1 = gradient_decsent_algorithm(km_normalized, price_normalized)
     theta0, theta1 = restore_after_normalisation(theta0, theta1, km, price)
-    print(theta0, theta1)
+    write_thetas_to_file(theta0, theta1)

@@ -1,12 +1,24 @@
 import sys
 import csv
+import json
 
 dataset_filename = "./data.csv"
 thetas_storage_filename = "./thetas.json"
 learning_rate = 0.2
 
 def estimate_price(mileage, theta0, theta1):
-    return float(theta0 + (theta1 * mileage));
+    return float(theta0 + (theta1 * mileage))
+
+def write_thetas_to_file(theta0, theta1):
+    thetas_data = {
+        'theta0': theta0,
+        'theta1': theta1
+    }
+    with open('data.json', 'w', encoding='utf-8') as f:
+        json.dump(thetas_data, f, ensure_ascii=False, indent=4)
+
+def read_thetas_from_file():
+    pass
 
 class DataItem:
     km = 0
@@ -47,4 +59,5 @@ def read_dataset():
 def eprint(*args, **kwargs):
     print(*args, file=sys.stderr, **kwargs)
     sys.exit(1)
+
 
