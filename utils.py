@@ -4,7 +4,7 @@ import json
 
 dataset_filename = "data.csv"
 thetas_storage_filename = "thetas.json"
-learning_rate = 0.2
+learning_rate = 0.05
 
 def estimate_price(mileage, theta0, theta1):
     return float(theta0 + (theta1 * mileage))
